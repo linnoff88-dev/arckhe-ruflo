@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.4 - Plugin Development | Curso Ruflo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.1); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-900\/40 { background-color: rgba(124, 58, 237, 0.14); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.1); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.1); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">Curso Ruflo</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Uso Prático</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Avançado</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.4</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🔌 Plugin Development</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Do scaffold ao publish em IPFS. Como criar e distribuir plugins.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">90</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Hands-on</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏗️ Scaffold de plugin</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Ruflo gera o esqueleto inicial em segundos via <code class="text-purple-400">plugins create</code>. Você ganha estrutura completa: <strong class="text-purple-400">manifest, hooks, commands e exports</strong> prontos para customizar.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⚡</span>Comando inicial</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha plugins create my-plugin</code></pre>
+        <p class="text-neutral-400 text-sm mt-3">Gera estrutura padrão:</p>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto mt-2"><code>my-plugin/
+├── package.json
+├── claude-flow.json    (manifest)
+├── src/
+│   ├── index.ts
+│   ├── hooks/
+│   └── commands/
+└── tests/</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>O que vem pronto</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>TypeScript config</strong> com types do <code class="text-purple-400">@claude-flow/plugins</code></li>
+          <li><strong>Manifest exemplo</strong> em claude-flow.json</li>
+          <li><strong>Test scaffold</strong> com Vitest</li>
+          <li><strong>Build pipeline</strong> (tsup + esbuild)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔧 Hooks, commands &amp; exports</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Um plugin pode contribuir três tipos de extensão. Tudo é declarado no <code class="text-purple-400">claude-flow.json</code>:
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🔧</span>claude-flow.json</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>{
+  "name": "@me/my-plugin",
+  "version": "1.0.0",
+  "type": "integration",
+  "hooks": ["pre-edit", "post-task"],
+  "commands": ["my-command"],
+  "exports": ["MyExport"],
+  "permissions": ["memory", "network"]
+}</code></pre>
+      </div>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Hooks</h4>
+            <p class="text-sm text-neutral-400 mb-3">Interceptar lifecycle</p>
+            <p class="text-neutral-300 text-sm">Reagir a edits, comandos, sessões. Mesma API do módulo 3.3.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Commands</h4>
+            <p class="text-sm text-neutral-400 mb-3">Subcomandos da CLI</p>
+            <p class="text-neutral-300 text-sm">Adicione <code class="text-purple-400">npx claude-flow my-command</code>. Útil para integrações de domínio.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Exports</h4>
+            <p class="text-sm text-neutral-400 mb-3">APIs públicas</p>
+            <p class="text-neutral-300 text-sm">Funções/classes que outros plugins ou scripts podem importar via <code class="text-purple-400">@me/my-plugin</code>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔌 Integration: memory &amp; neural</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Plugins têm acesso às <strong class="text-purple-400">APIs internas</strong> de Ruflo: AgentDB, SONA, embeddings, hooks. Tudo via <code class="text-purple-400">PluginContext</code> injetado no handler.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🔌</span>APIs disponíveis</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>export default async function activate(ctx: PluginContext) {
+  // AgentDB memória
+  await ctx.memory.store({ key: 'foo', value: 'bar' });
+  const result = await ctx.memory.search('query');
+
+  // SONA learning
+  await ctx.neural.recordTrajectory(state, action, reward);
+
+  // Embeddings
+  const vec = await ctx.embeddings.embed('text');
+
+  // Logger
+  ctx.logger.info('plugin activated');
+}</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Permissões</h3>
+        <p class="text-neutral-300">Toda capability requer <strong>permissão declarada no manifest</strong>. <code class="text-purple-400">memory</code>, <code class="text-purple-400">network</code>, <code class="text-purple-400">filesystem</code>, <code class="text-purple-400">neural</code>. Usuários veem o que o plugin pode fazer antes de instalar.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🧪 Local testing</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Antes de publicar, valide o plugin localmente. <code class="text-purple-400">plugins install ./path</code> faz install a partir do filesystem — útil para iteração rápida.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🧪</span>Workflow de teste</h3>
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">1. Build do plugin:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>cd my-plugin &amp;&amp; npm run build</code></pre>
+          </div>
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">2. Install local:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha plugins install ./my-plugin</code></pre>
+          </div>
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">3. Verificar status:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha plugins list</code></pre>
+          </div>
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">4. Testar comandos:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha my-command --help</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Iteração rápida</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Watch mode</strong> — <code class="text-purple-400">npm run dev</code> para rebuild automático</li>
+          <li><strong>Logs</strong> — <code class="text-purple-400">--log-level debug</code> para tracing detalhado</li>
+          <li><strong>Reinstall</strong> — <code class="text-purple-400">plugins reinstall</code> para forçar reload</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📤 Publish to IPFS</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Plugins Ruflo são distribuídos via <strong class="text-purple-400">IPFS pinned em Pinata</strong>. Cada release recebe um CID imutável; o registry global aponta para o CID atual.
+      </p>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Build &amp; package</h4>
+            <p class="text-sm text-neutral-400 mb-3">Gera tarball</p>
+            <p class="text-neutral-300 text-sm"><code class="text-purple-400">npm pack</code> cria <code class="text-purple-400">my-plugin-1.0.0.tgz</code> com tudo necessário.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Upload Pinata</h4>
+            <p class="text-sm text-neutral-400 mb-3">CID generation</p>
+            <p class="text-neutral-300 text-sm"><code class="text-purple-400">plugins publish</code> usa <code class="text-purple-400">PINATA_API_JWT</code> do .env. Retorna CID único.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Update registry</h4>
+            <p class="text-sm text-neutral-400 mb-3">Discovery flow</p>
+            <p class="text-neutral-300 text-sm">Adiciona entry no registry IPFS, incrementa <code class="text-purple-400">totalPlugins</code>, atualiza <code class="text-purple-400">LIVE_REGISTRY_CID</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Segurança</h3>
+        <p class="text-neutral-300">NUNCA commit <code class="text-purple-400">PINATA_API_JWT</code> no repo. Use <code class="text-purple-400">.env</code> (no .gitignore). E sempre source as credenciais em runtime, jamais hardcoded em scripts.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🏷️ Versioning &amp; dist-tags</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Plugins seguem <strong class="text-purple-400">Semantic Versioning</strong>. Use <strong class="text-purple-400">dist-tags</strong> (alpha, latest, v3alpha) para gerenciar canais de release.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🏷️</span>SemVer básico</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>MAJOR.MINOR.PATCH</strong> — 1.2.3</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>MAJOR</strong> — breaking changes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>MINOR</strong> — features compatíveis</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>PATCH</strong> — bug fixes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Pre-release</strong> — 1.0.0-alpha.5, 1.0.0-rc.1</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ FAZER</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Atualizar TODOS os dist-tags pertinentes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Bump version antes de cada publish</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Testar localmente antes de publicar</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Manter CHANGELOG.md atualizado</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ EVITAR</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esquecer dist-tag <code class="text-purple-400">latest</code></span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Republicar mesma versão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Breaking change em PATCH</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Hardcode de credenciais</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⚡</span>Comando dist-tag</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npm dist-tag add @me/my-plugin@1.0.0 latest
+npm dist-tag add @me/my-plugin@1.0.0-alpha.5 alpha
+npm dist-tag ls @me/my-plugin</code></pre>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Scaffold</strong><span class="text-neutral-400"> — plugins create gera estrutura completa em segundos</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Hooks/commands/exports</strong><span class="text-neutral-400"> — três tipos de extensão via manifest</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">APIs internas</strong><span class="text-neutral-400"> — memory, neural, embeddings via PluginContext</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Local testing</strong><span class="text-neutral-400"> — install ./path para iteração rápida</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">IPFS publish</strong><span class="text-neutral-400"> — Pinata + CID + registry update</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Versioning</strong><span class="text-neutral-400"> — SemVer + dist-tags (alpha, latest, v3alpha)</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.5 - Tópico avançado seguinte da Trilha 3</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+          <a href="modulo-3-5.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Ruflo · Módulo 3.4 · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

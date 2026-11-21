@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2.7 - Segurança & Performance no Dia a Dia | Curso Ruflo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.1); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-900\/40 { background-color: rgba(37, 99, 235, 0.14); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37, 99, 235, 0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.1); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">Curso Ruflo</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Uso Prático</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Avançado</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a>
+      <span>/</span>
+      <span class="text-blue-400">Módulo 2.7</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.7</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🛡️ Segurança & Performance no Dia a Dia</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">AIDefence, security scan, CVE remediation, benchmarks e Token Optimizer.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Médio</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Prática</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🛡️ AIDefence</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Camada dedicada para defesa contra ataques de IA. Detecta <strong class="text-blue-400">14 tipos de PII</strong>, <strong class="text-blue-400">prompt injection</strong> e <strong class="text-blue-400">jailbreak attempts</strong>. Aprende continuamente com self-learning, então melhora ao longo do tempo.
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🚨</span>O que detecta</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-blue-400">PII</strong> — CPF, email, telefone, endereço, CC, etc (14 tipos)</li>
+          <li><strong class="text-blue-400">Prompt injection</strong> — "ignore previous instructions", JB classics</li>
+          <li><strong class="text-blue-400">Jailbreak</strong> — DAN, role-play malicioso, encoding tricks</li>
+          <li><strong class="text-blue-400">Data exfil</strong> — tentativa de extrair contexto interno</li>
+        </ul>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atenção</h3>
+        <p class="text-neutral-300">AIDefence reduz risco — não elimina. Continue usando isolamento de dados sensíveis, validação no backend e least-privilege para serviços expostos.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔍 security scan</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O comando <code class="text-blue-400">security scan --depth full</code> roda audit completo: <strong class="text-blue-400">CVE check</strong>, <strong class="text-blue-400">secret detection</strong>, <strong class="text-blue-400">SAST</strong>, <strong class="text-blue-400">dep audit</strong>. Você executa antes de cada release.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">⚙️</span>Comandos</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-blue-400 text-sm overflow-x-auto"><code># Scan completo
+npx claude-flow@v3alpha security scan --depth full
+
+# Audit específico
+npx claude-flow@v3alpha security audit
+
+# Validar inputs
+npx claude-flow@v3alpha security validate
+
+# Relatório consolidado
+npx claude-flow@v3alpha security report</code></pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Output típico</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>CVEs em deps com CVSS score</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Secrets hardcoded com filename:line</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Padrões inseguros (SQL concat, eval, etc)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Plano de remediação priorizado</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🐞 CVE remediation</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Encontrou CVE? <strong class="text-blue-400">@claude-flow/security</strong> traz utilitários para mitigação rápida: <code class="text-blue-400">InputValidator</code> (Zod-based), <code class="text-blue-400">PathValidator</code> (path traversal), <code class="text-blue-400">SafeExecutor</code> (command injection), <code class="text-blue-400">PasswordHasher</code>, <code class="text-blue-400">TokenGenerator</code>.
+      </p>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">InputValidator</h4>
+            <p class="text-sm text-neutral-400 mb-3">Zod schemas em TODOS boundaries (HTTP, MCP, CLI)</p>
+            <p class="text-neutral-300 text-sm">Valida tipo, range, formato. Falha rápido no lugar correto.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">PathValidator</h4>
+            <p class="text-sm text-neutral-400 mb-3">Bloqueia path traversal (../, symlinks)</p>
+            <p class="text-neutral-300 text-sm">Garantia de que paths fiquem dentro do basedir esperado.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">SafeExecutor</h4>
+            <p class="text-sm text-neutral-400 mb-3">Wrapper sobre exec() com escape automático</p>
+            <p class="text-neutral-300 text-sm">Argumentos vão para argv, nunca string concatenada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">⚡ performance benchmark</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Sem benchmark, "está rápido" é opinião. Use <code class="text-blue-400">performance benchmark --suite all</code> para medir, comparar versões e detectar regressões antes do user.
+      </p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">⚙️</span>Comandos</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-blue-400 text-sm overflow-x-auto"><code># Suite completa
+npx claude-flow@v3alpha performance benchmark --suite all
+
+# Profile específico
+npx claude-flow@v3alpha performance profile --target ./src/api
+
+# Métricas atuais
+npx claude-flow@v3alpha performance metrics
+
+# Otimização baseada em métricas
+npx claude-flow@v3alpha performance optimize</code></pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Métricas trackadas</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-blue-400">HNSW search</strong> — alvo 150x-12.500x mais rápido</li>
+          <li><strong class="text-blue-400">MCP response</strong> — &lt;100ms (já alcançado)</li>
+          <li><strong class="text-blue-400">CLI startup</strong> — &lt;500ms</li>
+          <li><strong class="text-blue-400">Memory reduction</strong> — 50-75% com quantization Int8</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">💎 Token optimizer</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Tokens custam dinheiro e tempo. <strong class="text-blue-400">Agent Booster</strong> (WASM) faz transformações 352x mais rápido sem chamar LLM. Combinado com <strong class="text-blue-400">ReasoningBank</strong> (-32%) e <strong class="text-blue-400">cache 95% hit</strong>, economiza 30-50% no total.
+      </p>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📉</span>Onde economizar</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-blue-400">ReasoningBank retrieval</strong> — -32% (contexto compacto)</li>
+          <li><strong class="text-blue-400">Agent Booster edits</strong> — -15% (sem LLM em transformações simples)</li>
+          <li><strong class="text-blue-400">Cache 95% hit rate</strong> — -10% (não repete chamadas)</li>
+          <li><strong class="text-blue-400">Optimal batch size</strong> — -20% (menos overhead)</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">💻</span>Uso programático</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-blue-400 text-sm overflow-x-auto"><code>import { getTokenOptimizer } from '@claude-flow/integration';
+const optimizer = await getTokenOptimizer();
+
+// Contexto compacto (-32%)
+const ctx = await optimizer.getCompactContext("auth patterns");
+
+// Edit sem LLM (352x faster)
+await optimizer.optimizedEdit(file, old, new, "typescript");
+
+// Config ideal por agent count
+const config = optimizer.getOptimalConfig(agentCount);</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Dica prática</h3>
+        <p class="text-neutral-300">Sempre que ver flag <code>[AGENT_BOOSTER_AVAILABLE]</code> no contexto, use Edit direto — não chame Task. Edits de var→const, add types, async-await são WASM-handled.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧰 Production checklist</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Antes de cada deploy, rode esse checklist. Pequeno investimento de tempo que <strong class="text-blue-400">evita rollbacks</strong>, incidentes e dor de cabeça.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Sempre antes de deploy</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>doctor --fix (saúde geral)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>security scan --depth full</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>performance benchmark --suite all</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>npm test (cobertura ≥80%)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>worker status (audit estável)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Verifica .env não versionada</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Nunca faça</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skip de scan "porque é só hotfix"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Deploy direto sem staging</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Atualizar plugins em produção</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Comitar secrets ou .env</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pular code review de migration</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Subir alpha em produção crítica</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🚀</span>Pipeline final consolidada</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-blue-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha doctor --fix && \
+npx claude-flow@v3alpha security scan --depth full && \
+npx claude-flow@v3alpha performance benchmark --suite all && \
+npm test && \
+echo "Ready to deploy"</code></pre>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">AIDefence</strong><span class="text-neutral-400"> — 14 tipos PII, prompt injection, jailbreak detection</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">security scan</strong><span class="text-neutral-400"> — CVE, secrets, SAST, dep audit em um comando</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">CVE remediation</strong><span class="text-neutral-400"> — InputValidator, PathValidator, SafeExecutor</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">benchmark</strong><span class="text-neutral-400"> — Suite completa, profile, optimize, métricas</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Token optimizer</strong><span class="text-neutral-400"> — 30-50% redução via Booster + ReasoningBank + cache</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Production checklist</strong><span class="text-neutral-400"> — doctor, scan, benchmark, test antes de deploy</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próxima Trilha:</h3>
+          <p class="text-neutral-300">Trilha 3 - Avançado: tópicos profundos sobre arquitetura, federation, plugins próprios e otimizações</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+          <a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Próxima Trilha →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Ruflo · Módulo 2.7 · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>

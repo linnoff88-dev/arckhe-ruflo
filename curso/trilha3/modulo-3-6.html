@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.6 - Guidance Control Plane | Curso Ruflo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.1); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-900\/40 { background-color: rgba(124, 58, 237, 0.15); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.1); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.1); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">Curso Ruflo</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Uso Prático</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Avançado</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a>
+      <span>/</span>
+      <span class="text-purple-400">Módulo 3.6</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.6</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🎛️ Guidance Control Plane</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Compile, retrieve, enforce, evolve policies. WASM kernel Rust-powered.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Governança</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎛️ Control plane overview</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O <strong class="text-purple-400">Guidance Control Plane</strong> é onde policies viram comportamento real. Quatro verbos: <strong>compile</strong> (transformar regras), <strong>retrieve</strong> (buscar policies relevantes em runtime), <strong>enforce</strong> (bloquear o que viola) e <strong>evolve</strong> (atualizar conforme aprendizado). Mental model: é o tribunal interno do swarm.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🔄</span>Os 4 verbos do guidance</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>compile</strong> — pega YAML/DSL e produz regras executáveis</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>retrieve</strong> — busca policies aplicáveis ao contexto da operação</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>enforce</strong> — bloqueia, permite ou pede aprovação humana</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>evolve</strong> — propõe atualizações de policy baseadas em padrões observados</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Por que control plane?</h3>
+        <p class="text-neutral-300">Sem control plane, você espalha checks pelo código. Com guidance, policies ficam <strong>declarativas</strong> e <strong>centralizadas</strong>. Auditoria fica trivial — você prova compliance mostrando o policy file, não rastreando 500 if-statements.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📜 Compile policies</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Policies em Ruflo são escritas em <strong class="text-purple-400">YAML ou DSL</strong> e compiladas para regras executáveis. O compilador faz validação estática — detecta typos, dependências quebradas e contradições antes de produção. Política não compila = não vai pro runtime.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">📝</span>Exemplo policy YAML</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>policy: prevent-prod-delete
+when:
+  operation: delete
+  environment: production
+require:
+  approvals: 2
+  approvers: ["sre-team", "security"]
+deny_message: "Delete em prod requer 2 aprovações"</code></pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⚡</span>Comando de compilação</h3>
+        <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha guidance compile \
+  --input ./policies/*.yaml \
+  --output ./dist/policies.wasm</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Validação estática</h3>
+        <p class="text-neutral-300">O compilador detecta: typos em campos, referências a aprovadores inexistentes, regras conflitantes (uma permite, outra nega o mesmo), policies que nunca podem ser satisfeitas. Você descobre na build, não em produção.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🚦 Enforce gates</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Gates de enforcement são <strong class="text-purple-400">pontos de checagem</strong> em operações sensíveis. Pre-hooks param a operação se policy nega; post-hooks verificam pós-execução e podem disparar rollback. O agente que tenta deletar dados em produção bate no gate antes de qualquer query SQL ser executada.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Pre-hooks bloqueiam</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Deploy em produção sem aprovação</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Delete de dados sensíveis</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Mudança de schema sem migration plan</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Outbound network call para domínio bloqueado</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Spawn de agente sem permissão claims</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Sem gates você arrisca</h4>
+          <ul class="space-y-3 text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente derrubando produção por engano</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Vazamento de dados via API misconfigurada</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Compliance violation em horário não-business</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Spawn descontrolado de subagentes</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Spending acima do budget</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔬 WASM kernel (Rust-powered)</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O kernel de enforcement do guidance é escrito em <strong class="text-purple-400">Rust e compilado para WASM</strong>. Duas vantagens: performance (avaliação de policy em microssegundos) e sandboxing (policy maliciosa não pode comprometer o host). Mesmo que alguém injete código numa policy, ele roda confinado no WASM.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🚀</span>Vantagens do WASM</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Performance</strong> — avaliação de policy em &lt;1ms típico</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Sandbox</strong> — não acessa filesystem nem network sem permissão explícita</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Cross-platform</strong> — mesmo binary roda em Linux, macOS, Windows</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Determinístico</strong> — mesmo input produz mesmo output sempre</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Type-safe</strong> — Rust impede categorias inteiras de bugs</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span>Comparativo</h3>
+        <p class="text-neutral-300">Policy engine em <strong>JavaScript puro</strong>: ~50ms por avaliação, sem sandboxing real. Policy engine em <strong>WASM/Rust</strong>: ~0.5ms por avaliação, sandbox forte. Em hot paths com milhares de chamadas, a diferença é gigante.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎯 Trust anchors</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Trust anchors são <strong class="text-purple-400">pontos de referência confiáveis</strong> que ajudam o guidance a tomar decisões sob informação parcial ou ambígua. Se você só tem 60% de certeza sobre o que uma operação faz, o anchor define o comportamento default — preferir bloquear ou permitir, com qual peso temporal.
+      </p>
+
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">🤔</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Uncertainty handling</h4>
+            <p class="text-sm text-neutral-400 mb-3">Decisão sob dúvida</p>
+            <p class="text-neutral-300 text-sm">Quando confiança é baixa, o anchor decide: <strong>conservador</strong> (negar e pedir clarificação humana) ou <strong>permissivo</strong> (permitir com audit alto). Healthcare = conservador. Dev sandbox = permissivo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">⏱️</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Temporal reasoning</h4>
+            <p class="text-sm text-neutral-400 mb-3">Time-aware policies</p>
+            <p class="text-neutral-300 text-sm">Anchors temporais permitem regras como "deploys só entre 9h-17h dias úteis", "delete em prod proibido 30 dias antes de auditoria", "rollback automático se métrica degrada por &gt;5min".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">⚖️</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold mb-2">Default bias</h4>
+            <p class="text-sm text-neutral-400 mb-3">Quando policies conflitam</p>
+            <p class="text-neutral-300 text-sm">Se duas policies aplicáveis dão veredictos opostos, o trust anchor resolve. Geralmente: <strong>policy mais restritiva ganha</strong> (fail-safe). Configurável por contexto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">✅ Conformance kit</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O <strong class="text-purple-400">Conformance Kit</strong> roda baterias de testes contra suas policies para validar HIPAA, SOC2 ou GDPR. Não é só checklist — é simulação ativa: gera operações sintéticas de violação e confirma que o guidance bloqueia. Se passa, você tem evidência objetiva para auditoria.
+      </p>
+
+      <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🧪</span>Comandos de validação</h3>
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">Validar HIPAA:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha guidance conformance --suite hipaa</code></pre>
+          </div>
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">Validar SOC2:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha guidance conformance --suite soc2</code></pre>
+          </div>
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">Validar GDPR:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha guidance conformance --suite gdpr</code></pre>
+          </div>
+          <div>
+            <p class="text-sm text-neutral-400 mb-1">Gerar relatório PDF:</p>
+            <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha guidance conformance \
+  --suite all \
+  --report pdf \
+  --output ./compliance-report.pdf</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Auditoria de verdade</h3>
+        <p class="text-neutral-300">Auditor não pede só documento — pede prova. O conformance kit gera <strong>relatório com casos de teste, inputs, outputs e veredictos</strong>. É evidência objetiva, não promessa.</p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Control plane</strong><span class="text-neutral-400"> — 4 verbos: compile, retrieve, enforce, evolve</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Compile</strong><span class="text-neutral-400"> — YAML/DSL → executável WASM, validação estática</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Enforce gates</strong><span class="text-neutral-400"> — Pre/post hooks bloqueiam operações sensíveis</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">WASM kernel</strong><span class="text-neutral-400"> — Rust + sandboxing, &lt;1ms por avaliação</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Trust anchors</strong><span class="text-neutral-400"> — Uncertainty handling + temporal reasoning</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Conformance kit</strong><span class="text-neutral-400"> — HIPAA / SOC2 / GDPR validation automatizada</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">3.7 - Multi-Provider Routing: 4 LLMs, 3 tiers, cost optimization</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+          <a href="modulo-3-7.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Ruflo · Módulo 3.6 · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => { themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden'); html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); });
+  </script>
+</body>
+</html>
