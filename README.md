@@ -8,7 +8,7 @@
 
 Curso completo sobre [Ruflo (claude-flow v3.6)](https://github.com/ruvnet/claude-flow) ê¢â¬â orquestraêÂ§êÂ£o de agentes multi-IA com Claude Code.
 
-**Acesse o curso:** [https://inematds.github.io/ruflo/](https://inematds.github.io/ruflo/)
+**Acesse o curso:** [https://linnoff88-dev.github.io/arckhe-/](https://linnoff88-dev.github.io/arckhe-/)
 
 ## Estrutura
 
@@ -23,7 +23,7 @@ Curso completo sobre [Ruflo (claude-flow v3.6)](https://github.com/ruvnet/claude
 ## Como rodar localmente
 
 ```bash
-git clone https://github.com/inematds/ruflo.git
+git clone https://github.com/linnoff88-dev/ruflo.git
 cd ruflo
 python3 -m http.server 8000
 # Abrir http://localhost:8000
@@ -34,7 +34,7 @@ python3 -m http.server 8000
 1. VêÂ¡ em **Settings** ê¢â â **Pages**
 2. Em **Source**, selecione **Deploy from a branch**
 3. Escolha branch **main** e pasta **/ (root)**
-4. Salve. O site fica disponêÂ­vel em `https://inematds.github.io/ruflo/` em ~1 minuto.
+4. Salve. O site fica disponêÂ­vel em `https://linnoff88-dev.github.io/arckhe-/` em ~1 minuto.
 
 ## ConteêÂºdo
 
@@ -67,7 +67,7 @@ python3 -m http.server 8000
 
 ## Sobre
 
-- **Formato:** [INEMA.CLUB](https://inema.club)
+- **Formato:** [ARCKHÉ AI](https://ARCKHÉ AI)
 - **LicenêÂ§a:** MIT
 - **Tema:** Dark mode default + light mode toggle
 - **Stack:** HTML + Tailwind CSS (CDN) + JavaScript vanilla ê¢â¬â sem build step
@@ -75,7 +75,7 @@ python3 -m http.server 8000
 ## CrêÂ©ditos
 
 - Projeto Ruflo: [github.com/ruvnet/claude-flow](https://github.com/ruvnet/claude-flow)
-- Formato e curso: [INEMA.CLUB](https://inema.club)
+- Formato e curso: [ARCKHÉ AI](https://ARCKHÉ AI)
 
 ---
 
