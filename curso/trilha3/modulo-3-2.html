@@ -113,13 +113,13 @@
         <h2 class="text-2xl font-bold">🤝 Por que consenso?</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Em swarms pequenos (2-4 agentes), coordenação é trivial. Em swarms grandes (10+), surgem <strong class="text-purple-400">conflitos de estado, falhas parciais e race conditions</strong>. Algoritmos de consenso garantem que os agentes <strong class="text-purple-400">concordam sobre a verdade</strong> mesmo com falhas.
+        Em swarms pequenos (2-4 agentes), coordenaçêo é trivial. Em swarms grandes (10+), surgem <strong class="text-purple-400">conflitos de estado, falhas parciais e race conditions</strong>. Algoritmos de consenso garantem que os agentes <strong class="text-purple-400">concordam sobre a verdade</strong> mesmo com falhas.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎯</span>Quando você precisa de consenso</h3>
         <ul class="space-y-2 text-neutral-300">
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Swarms grandes</strong> — coordenação 10+ agentes</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Swarms grandes</strong> — coordenaçêo 10+ agentes</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Tolerância a falhas</strong> — agente cai sem corromper estado global</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Decisões críticas</strong> — deploy, merge, release management</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Estado compartilhado</strong> — multiple writers em memória global</span></li>
@@ -151,7 +151,7 @@
         <ol class="space-y-3 text-neutral-300 list-decimal list-inside">
           <li><strong class="text-purple-400">Leader Election</strong> — quando líder cai, candidatos pedem votos</li>
           <li><strong class="text-purple-400">Log Replication</strong> — líder envia AppendEntries para followers</li>
-          <li><strong class="text-purple-400">Safety</strong> — committed entries nunca são perdidas</li>
+          <li><strong class="text-purple-400">Safety</strong> — committed entries nunca sêo perdidas</li>
         </ol>
       </div>
 
@@ -161,7 +161,7 @@
           <ul class="space-y-3 text-neutral-300">
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Coding tasks com 4-8 agentes</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Você quer simplicidade</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Todos os agentes são confiáveis</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Todos os agentes sêo confiáveis</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Latência baixa importa</span></li>
           </ul>
         </div>
@@ -184,13 +184,13 @@
         <h2 class="text-2xl font-bold">🛡️ Byzantine BFT</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Byzantine Fault Tolerance lida com o <strong class="text-purple-400">pior cenário</strong>: nós que mentem, corrompem ou enviam mensagens contraditórias. Tolera <strong class="text-purple-400">f &lt; n/3 nós maliciosos</strong>. É <strong class="text-purple-400">mais lento</strong> que Raft (3 rounds de comunicação), mas resiste a ataques.
+        Byzantine Fault Tolerance lida com o <strong class="text-purple-400">pior cenário</strong>: nós que mentem, corrompem ou enviam mensagens contraditórias. Tolera <strong class="text-purple-400">f &lt; n/3 nós maliciosos</strong>. É <strong class="text-purple-400">mais lento</strong> que Raft (3 rounds de comunicaçêo), mas resiste a ataques.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🛡️</span>Quando vale a pena</h3>
         <ul class="space-y-2 text-neutral-300">
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Federation com instâncias não-confiáveis</strong> — cross-org coordination</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Federation com instâncias nêo-confiáveis</strong> — cross-org coordination</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Plugins de terceiros executando agentes</strong> — sandbox quebrado é possível</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Compliance crítica</strong> — auditoria precisa garantir integridade</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Decisões financeiras / médicas</strong> — domínios de alto risco</span></li>
@@ -210,7 +210,7 @@
         <h2 class="text-2xl font-bold">💫 Gossip protocol</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Gossip é <strong class="text-purple-400">epidêmico</strong>: cada nó periodicamente troca informação com vizinhos aleatórios. Não há líder, não há quórum. Em troca, oferece <strong class="text-purple-400">eventual consistency</strong> — todos convergem, mas não imediatamente.
+        Gossip é <strong class="text-purple-400">epidêmico</strong>: cada nó periodicamente troca informaçêo com vizinhos aleatórios. Nêo há líder, nêo há quórum. Em troca, oferece <strong class="text-purple-400">eventual consistency</strong> — todos convergem, mas nêo imediatamente.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -225,7 +225,7 @@
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Caso de uso típico</h3>
-        <p class="text-neutral-300">Federation entre <strong>centenas de instalações Ruflo</strong> compartilhando padrões de aprendizado. Você não precisa que todas tenham o mesmo estado <em>agora</em> — basta convergir nos próximos minutos.</p>
+        <p class="text-neutral-300">Federation entre <strong>centenas de instalações Ruflo</strong> compartilhando padrões de aprendizado. Você nêo precisa que todas tenham o mesmo estado <em>agora</em> — basta convergir nos próximos minutos.</p>
       </div>
     </section>
 
@@ -236,7 +236,7 @@
         <h2 class="text-2xl font-bold">🔄 CRDT</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        <strong class="text-purple-400">Conflict-free Replicated Data Types</strong> são estruturas matemáticas onde <strong class="text-purple-400">conflitos não existem por design</strong>. Não importa a ordem das operações, todos os nós convergem para o mesmo estado.
+        <strong class="text-purple-400">Conflict-free Replicated Data Types</strong> sêo estruturas matemáticas onde <strong class="text-purple-400">conflitos nêo existem por design</strong>. Nêo importa a ordem das operações, todos os nós convergem para o mesmo estado.
       </p>
 
       <div class="space-y-6 mb-6">
@@ -274,7 +274,7 @@
         <h2 class="text-2xl font-bold">⚖️ Quorum customizável</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Quorum é o <strong class="text-purple-400">mínimo de nós que precisam concordar</strong> para uma operação ser válida. Em Ruflo é configurável: você pode exigir <strong class="text-purple-400">2/3 dos agentes</strong> aprovando antes de aplicar uma mudança crítica.
+        Quorum é o <strong class="text-purple-400">mínimo de nós que precisam concordar</strong> para uma operaçêo ser válida. Em Ruflo é configurável: você pode exigir <strong class="text-purple-400">2/3 dos agentes</strong> aprovando antes de aplicar uma mudança crítica.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -307,7 +307,7 @@
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Raft</strong><span class="text-neutral-400"> — Leader-based, f&lt;n/2, default em Ruflo</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Byzantine BFT</strong><span class="text-neutral-400"> — f&lt;n/3, tolera maliciosos, mais lento</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Gossip</strong><span class="text-neutral-400"> — Epidemic protocol, eventual consistency, escala 100+</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">CRDT</strong><span class="text-neutral-400"> — Conflict-free por design, sem coordenação central</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">CRDT</strong><span class="text-neutral-400"> — Conflict-free por design, sem coordenaçêo central</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Quorum</strong><span class="text-neutral-400"> — Configurável: maioria, 2/3, unanimidade, weighted</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">

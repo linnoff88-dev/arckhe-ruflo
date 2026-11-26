@@ -119,7 +119,7 @@
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⚡</span>Comando inicial</h3>
         <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha plugins create my-plugin</code></pre>
-        <p class="text-neutral-400 text-sm mt-3">Gera estrutura padrão:</p>
+        <p class="text-neutral-400 text-sm mt-3">Gera estrutura padrêo:</p>
         <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto mt-2"><code>my-plugin/
 ├── package.json
 ├── claude-flow.json    (manifest)
@@ -148,7 +148,7 @@
         <h2 class="text-2xl font-bold">🔧 Hooks, commands &amp; exports</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Um plugin pode contribuir três tipos de extensão. Tudo é declarado no <code class="text-purple-400">claude-flow.json</code>:
+        Um plugin pode contribuir três tipos de extensêo. Tudo é declarado no <code class="text-purple-400">claude-flow.json</code>:
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -222,7 +222,7 @@
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Permissões</h3>
-        <p class="text-neutral-300">Toda capability requer <strong>permissão declarada no manifest</strong>. <code class="text-purple-400">memory</code>, <code class="text-purple-400">network</code>, <code class="text-purple-400">filesystem</code>, <code class="text-purple-400">neural</code>. Usuários veem o que o plugin pode fazer antes de instalar.</p>
+        <p class="text-neutral-300">Toda capability requer <strong>permissêo declarada no manifest</strong>. <code class="text-purple-400">memory</code>, <code class="text-purple-400">network</code>, <code class="text-purple-400">filesystem</code>, <code class="text-purple-400">neural</code>. Usuários veem o que o plugin pode fazer antes de instalar.</p>
       </div>
     </section>
 
@@ -233,7 +233,7 @@
         <h2 class="text-2xl font-bold">🧪 Local testing</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Antes de publicar, valide o plugin localmente. <code class="text-purple-400">plugins install ./path</code> faz install a partir do filesystem — útil para iteração rápida.
+        Antes de publicar, valide o plugin localmente. <code class="text-purple-400">plugins install ./path</code> faz install a partir do filesystem — útil para iteraçêo rápida.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -259,7 +259,7 @@
       </div>
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Iteração rápida</h3>
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Iteraçêo rápida</h3>
         <ul class="space-y-2 text-neutral-300">
           <li><strong>Watch mode</strong> — <code class="text-purple-400">npm run dev</code> para rebuild automático</li>
           <li><strong>Logs</strong> — <code class="text-purple-400">--log-level debug</code> para tracing detalhado</li>
@@ -275,7 +275,7 @@
         <h2 class="text-2xl font-bold">📤 Publish to IPFS</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Plugins Ruflo são distribuídos via <strong class="text-purple-400">IPFS pinned em Pinata</strong>. Cada release recebe um CID imutável; o registry global aponta para o CID atual.
+        Plugins Ruflo sêo distribuídos via <strong class="text-purple-400">IPFS pinned em Pinata</strong>. Cada release recebe um CID imutável; o registry global aponta para o CID atual.
       </p>
 
       <div class="space-y-6 mb-6">
@@ -346,7 +346,7 @@
           <h4 class="font-bold text-red-400 mb-4">✗ EVITAR</h4>
           <ul class="space-y-3 text-neutral-300">
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esquecer dist-tag <code class="text-purple-400">latest</code></span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Republicar mesma versão</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Republicar mesma versêo</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Breaking change em PATCH</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Hardcode de credenciais</span></li>
           </ul>
@@ -367,9 +367,9 @@ npm dist-tag ls @me/my-plugin</code></pre>
         <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
         <div class="space-y-4 mb-8">
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Scaffold</strong><span class="text-neutral-400"> — plugins create gera estrutura completa em segundos</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Hooks/commands/exports</strong><span class="text-neutral-400"> — três tipos de extensão via manifest</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Hooks/commands/exports</strong><span class="text-neutral-400"> — três tipos de extensêo via manifest</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">APIs internas</strong><span class="text-neutral-400"> — memory, neural, embeddings via PluginContext</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Local testing</strong><span class="text-neutral-400"> — install ./path para iteração rápida</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Local testing</strong><span class="text-neutral-400"> — install ./path para iteraçêo rápida</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">IPFS publish</strong><span class="text-neutral-400"> — Pinata + CID + registry update</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Versioning</strong><span class="text-neutral-400"> — SemVer + dist-tags (alpha, latest, v3alpha)</span></div></div>
         </div>

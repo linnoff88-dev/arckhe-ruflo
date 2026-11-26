@@ -110,7 +110,7 @@
         <h2 class="text-2xl font-bold">🛡️ AIDefence</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Camada dedicada para defesa contra ataques de IA. Detecta <strong class="text-blue-400">14 tipos de PII</strong>, <strong class="text-blue-400">prompt injection</strong> e <strong class="text-blue-400">jailbreak attempts</strong>. Aprende continuamente com self-learning, então melhora ao longo do tempo.
+        Camada dedicada para defesa contra ataques de IA. Detecta <strong class="text-blue-400">14 tipos de PII</strong>, <strong class="text-blue-400">prompt injection</strong> e <strong class="text-blue-400">jailbreak attempts</strong>. Aprende continuamente com self-learning, entêo melhora ao longo do tempo.
       </p>
 
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
@@ -124,8 +124,8 @@
       </div>
 
       <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atenção</h3>
-        <p class="text-neutral-300">AIDefence reduz risco — não elimina. Continue usando isolamento de dados sensíveis, validação no backend e least-privilege para serviços expostos.</p>
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atençêo</h3>
+        <p class="text-neutral-300">AIDefence reduz risco — nêo elimina. Continue usando isolamento de dados sensíveis, validaçêo no backend e least-privilege para serviços expostos.</p>
       </div>
     </section>
 
@@ -160,7 +160,7 @@ npx claude-flow@v3alpha security report</code></pre>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>CVEs em deps com CVSS score</span></li>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Secrets hardcoded com filename:line</span></li>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Padrões inseguros (SQL concat, eval, etc)</span></li>
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Plano de remediação priorizado</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Plano de remediaçêo priorizado</span></li>
         </ul>
       </div>
     </section>
@@ -172,7 +172,7 @@ npx claude-flow@v3alpha security report</code></pre>
         <h2 class="text-2xl font-bold">🐞 CVE remediation</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Encontrou CVE? <strong class="text-blue-400">@claude-flow/security</strong> traz utilitários para mitigação rápida: <code class="text-blue-400">InputValidator</code> (Zod-based), <code class="text-blue-400">PathValidator</code> (path traversal), <code class="text-blue-400">SafeExecutor</code> (command injection), <code class="text-blue-400">PasswordHasher</code>, <code class="text-blue-400">TokenGenerator</code>.
+        Encontrou CVE? <strong class="text-blue-400">@claude-flow/security</strong> traz utilitários para mitigaçêo rápida: <code class="text-blue-400">InputValidator</code> (Zod-based), <code class="text-blue-400">PathValidator</code> (path traversal), <code class="text-blue-400">SafeExecutor</code> (command injection), <code class="text-blue-400">PasswordHasher</code>, <code class="text-blue-400">TokenGenerator</code>.
       </p>
 
       <div class="space-y-6 mb-6">
@@ -197,7 +197,7 @@ npx claude-flow@v3alpha security report</code></pre>
           <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
             <h4 class="font-semibold mb-2">SafeExecutor</h4>
             <p class="text-sm text-neutral-400 mb-3">Wrapper sobre exec() com escape automático</p>
-            <p class="text-neutral-300 text-sm">Argumentos vão para argv, nunca string concatenada.</p>
+            <p class="text-neutral-300 text-sm">Argumentos vêo para argv, nunca string concatenada.</p>
           </div>
         </div>
       </div>
@@ -210,7 +210,7 @@ npx claude-flow@v3alpha security report</code></pre>
         <h2 class="text-2xl font-bold">⚡ performance benchmark</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Sem benchmark, "está rápido" é opinião. Use <code class="text-blue-400">performance benchmark --suite all</code> para medir, comparar versões e detectar regressões antes do user.
+        Sem benchmark, "está rápido" é opiniêo. Use <code class="text-blue-400">performance benchmark --suite all</code> para medir, comparar versões e detectar regressões antes do user.
       </p>
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
@@ -224,7 +224,7 @@ npx claude-flow@v3alpha performance profile --target ./src/api
 # Métricas atuais
 npx claude-flow@v3alpha performance metrics
 
-# Otimização baseada em métricas
+# Otimizaçêo baseada em métricas
 npx claude-flow@v3alpha performance optimize</code></pre>
       </div>
 
@@ -254,7 +254,7 @@ npx claude-flow@v3alpha performance optimize</code></pre>
         <ul class="space-y-2 text-neutral-300">
           <li><strong class="text-blue-400">ReasoningBank retrieval</strong> — -32% (contexto compacto)</li>
           <li><strong class="text-blue-400">Agent Booster edits</strong> — -15% (sem LLM em transformações simples)</li>
-          <li><strong class="text-blue-400">Cache 95% hit rate</strong> — -10% (não repete chamadas)</li>
+          <li><strong class="text-blue-400">Cache 95% hit rate</strong> — -10% (nêo repete chamadas)</li>
           <li><strong class="text-blue-400">Optimal batch size</strong> — -20% (menos overhead)</li>
         </ul>
       </div>
@@ -276,7 +276,7 @@ const config = optimizer.getOptimalConfig(agentCount);</code></pre>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Dica prática</h3>
-        <p class="text-neutral-300">Sempre que ver flag <code>[AGENT_BOOSTER_AVAILABLE]</code> no contexto, use Edit direto — não chame Task. Edits de var→const, add types, async-await são WASM-handled.</p>
+        <p class="text-neutral-300">Sempre que ver flag <code>[AGENT_BOOSTER_AVAILABLE]</code> no contexto, use Edit direto — nêo chame Task. Edits de var→const, add types, async-await sêo WASM-handled.</p>
       </div>
     </section>
 
@@ -299,7 +299,7 @@ const config = optimizer.getOptimalConfig(agentCount);</code></pre>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>performance benchmark --suite all</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>npm test (cobertura ≥80%)</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>worker status (audit estável)</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Verifica .env não versionada</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Verifica .env nêo versionada</span></li>
           </ul>
         </div>
         <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
@@ -307,10 +307,10 @@ const config = optimizer.getOptimalConfig(agentCount);</code></pre>
           <ul class="space-y-3 text-neutral-300">
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skip de scan "porque é só hotfix"</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Deploy direto sem staging</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Atualizar plugins em produção</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Atualizar plugins em produçêo</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Comitar secrets ou .env</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pular code review de migration</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Subir alpha em produção crítica</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Subir alpha em produçêo crítica</span></li>
           </ul>
         </div>
       </div>
@@ -334,7 +334,7 @@ echo "Ready to deploy"</code></pre>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">security scan</strong><span class="text-neutral-400"> — CVE, secrets, SAST, dep audit em um comando</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">CVE remediation</strong><span class="text-neutral-400"> — InputValidator, PathValidator, SafeExecutor</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">benchmark</strong><span class="text-neutral-400"> — Suite completa, profile, optimize, métricas</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Token optimizer</strong><span class="text-neutral-400"> — 30-50% redução via Booster + ReasoningBank + cache</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Token optimizer</strong><span class="text-neutral-400"> — 30-50% reduçêo via Booster + ReasoningBank + cache</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Production checklist</strong><span class="text-neutral-400"> — doctor, scan, benchmark, test antes de deploy</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">

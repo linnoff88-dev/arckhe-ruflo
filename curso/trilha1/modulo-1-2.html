@@ -105,16 +105,16 @@
     <section id="topico-1" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
-        <h2 class="text-2xl font-bold">🏗️ Visão geral das 4 camadas</h2>
+        <h2 class="text-2xl font-bold">🏗️ Visêo geral das 4 camadas</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Ruflo segue <strong class="text-emerald-400">Domain-Driven Design</strong> com bounded contexts. Em vez de um monolito, são 27 pacotes <code class="text-emerald-400">@claude-flow/*</code> divididos em 4 camadas hierárquicas: <strong class="text-emerald-400">Interface, Orquestração, Inteligência e Infraestrutura</strong>. Cada camada só conhece a de baixo.
+        Ruflo segue <strong class="text-emerald-400">Domain-Driven Design</strong> com bounded contexts. Em vez de um monolito, sêo 27 pacotes <code class="text-emerald-400">@claude-flow/*</code> divididos em 4 camadas hierárquicas: <strong class="text-emerald-400">Interface, Orquestraçêo, Inteligência e Infraestrutura</strong>. Cada camada só conhece a de baixo.
       </p>
 
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📐</span>Por que separar em camadas</h3>
         <ul class="space-y-2 text-neutral-300">
-          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Trocar implementação</strong> sem afetar o resto (ex: outro backend de memória)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Trocar implementaçêo</strong> sem afetar o resto (ex: outro backend de memória)</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Testar isoladamente</strong> cada bounded context com mocks</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Onboarding rápido</strong> — devs entendem só a camada que tocam</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Versionar em paralelo</strong> via npm workspaces</span></li>
@@ -134,7 +134,7 @@
         <h2 class="text-2xl font-bold">📦 Pacotes core</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Os <strong class="text-emerald-400">5 pacotes core</strong> formam a espinha dorsal: cli, mcp, swarm, memory e hooks. Sem eles, Ruflo não funciona — todos os outros pacotes os consomem.
+        Os <strong class="text-emerald-400">5 pacotes core</strong> formam a espinha dorsal: cli, mcp, swarm, memory e hooks. Sem eles, Ruflo nêo funciona — todos os outros pacotes os consomem.
       </p>
 
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
@@ -167,7 +167,7 @@
           <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
           <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
             <h4 class="font-semibold mb-2">memory é puro</h4>
-            <p class="text-neutral-300 text-sm">Não importa de ninguém core. É a base — usado por hooks, swarm e cli.</p>
+            <p class="text-neutral-300 text-sm">Nêo importa de ninguém core. É a base — usado por hooks, swarm e cli.</p>
           </div>
         </div>
       </div>
@@ -177,10 +177,10 @@
     <section id="topico-3" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
-        <h2 class="text-2xl font-bold">🔌 Pacotes de integração</h2>
+        <h2 class="text-2xl font-bold">🔌 Pacotes de integraçêo</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Os pacotes de integração — <strong class="text-emerald-400">security, guidance, neural, embeddings</strong> — funcionam em segundo plano. Você raramente os chama direto, mas eles ativam features cruciais como SONA learning, validação de entrada e busca vetorial.
+        Os pacotes de integraçêo — <strong class="text-emerald-400">security, guidance, neural, embeddings</strong> — funcionam em segundo plano. Você raramente os chama direto, mas eles ativam features cruciais como SONA learning, validaçêo de entrada e busca vetorial.
       </p>
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
@@ -219,7 +219,7 @@
     <section id="topico-4" class="mb-16">
       <div class="flex items-center space-x-4 mb-6">
         <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
-        <h2 class="text-2xl font-bold">🌊 Fluxo de execução</h2>
+        <h2 class="text-2xl font-bold">🌊 Fluxo de execuçêo</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
         Quando você roda <code class="text-emerald-400">npx claude-flow swarm init</code>, há um caminho típico que percorre as 4 camadas. <strong class="text-emerald-400">Entender esse fluxo ajuda a debugar</strong> quando algo dá errado.
@@ -237,7 +237,7 @@
           <div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
           <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
             <h4 class="font-semibold mb-2">MCP server roteia</h4>
-            <p class="text-neutral-300 text-sm">Se chamado por Claude Code, MCP traduz tool call em invocação interna.</p>
+            <p class="text-neutral-300 text-sm">Se chamado por Claude Code, MCP traduz tool call em invocaçêo interna.</p>
           </div>
         </div>
         <div class="flex items-start space-x-4">
@@ -282,7 +282,7 @@
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Boa prática</h3>
-        <p class="text-neutral-300">Use MCP para coordenação (swarm_init, agent_spawn) e Task tool nativo do Claude Code para execução. <strong>MCP coordena, Claude Code cria.</strong></p>
+        <p class="text-neutral-300">Use MCP para coordenaçêo (swarm_init, agent_spawn) e Task tool nativo do Claude Code para execuçêo. <strong>MCP coordena, Claude Code cria.</strong></p>
       </div>
     </section>
 
@@ -293,14 +293,14 @@
         <h2 class="text-2xl font-bold">🗺️ Mapa mental</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Para reter o ecossistema na cabeça, construa um <strong class="text-emerald-400">modelo mental simples</strong>: 4 camadas, 5 pacotes core, e tudo o resto é integração ou plugin. Não tente decorar 27 pacotes — entenda os papéis.
+        Para reter o ecossistema na cabeça, construa um <strong class="text-emerald-400">modelo mental simples</strong>: 4 camadas, 5 pacotes core, e tudo o resto é integraçêo ou plugin. Nêo tente decorar 27 pacotes — entenda os papéis.
       </p>
 
       <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🧠</span>Modelo mental enxuto</h3>
         <ul class="space-y-2 text-neutral-300">
           <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Topo:</strong> CLI + MCP (interface)</span></li>
-          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Meio-superior:</strong> Swarm + Hooks (orquestração)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Meio-superior:</strong> Swarm + Hooks (orquestraçêo)</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Meio-inferior:</strong> Memory + Neural + Embeddings (inteligência)</span></li>
           <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>Base:</strong> Security + Guidance + AIdefence (infraestrutura)</span></li>
         </ul>
@@ -313,7 +313,7 @@
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Camadas como prédio — recados sobem e descem"</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"5 pacotes core, resto é tempero"</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"MCP é a porta para Claude Code"</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Hooks são o sistema nervoso"</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Hooks sêo o sistema nervoso"</span></li>
           </ul>
         </div>
         <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
@@ -333,12 +333,12 @@
       <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
         <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
         <div class="space-y-4 mb-8">
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">4 camadas DDD</strong><span class="text-neutral-400"> — Interface, Orquestração, Inteligência, Infraestrutura</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">4 camadas DDD</strong><span class="text-neutral-400"> — Interface, Orquestraçêo, Inteligência, Infraestrutura</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">5 pacotes core</strong><span class="text-neutral-400"> — cli, mcp, swarm, memory, hooks</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Integrações invisíveis</strong><span class="text-neutral-400"> — security, guidance, neural, embeddings rodam no fundo</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Fluxo CLI→MCP→Swarm→Agents→Hooks</strong><span class="text-neutral-400"> — entende esse path e debug fica fácil</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">MCP conecta a Claude Code</strong><span class="text-neutral-400"> — 314 tools acessíveis com 1 comando</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Modelo mental simples</strong><span class="text-neutral-400"> — não decore, entenda papéis das camadas</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Modelo mental simples</strong><span class="text-neutral-400"> — nêo decore, entenda papéis das camadas</span></div></div>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
           <h3 class="font-semibold text-emerald-400 mb-2">Próximo Módulo:</h3>

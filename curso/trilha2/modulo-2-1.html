@@ -110,7 +110,7 @@
         <h2 class="text-2xl font-bold">💬 Comms-first vs polling</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Coordenação por shared memory força agentes a ficar <strong class="text-blue-400">verificando estado o tempo todo</strong>. SendMessage inverte: o agente recebe a notificação no momento em que precisa agir. É a diferença entre <strong class="text-blue-400">push e pull</strong>, e isso muda completamente a latência do swarm.
+        Coordenaçêo por shared memory força agentes a ficar <strong class="text-blue-400">verificando estado o tempo todo</strong>. SendMessage inverte: o agente recebe a notificaçêo no momento em que precisa agir. É a diferença entre <strong class="text-blue-400">push e pull</strong>, e isso muda completamente a latência do swarm.
       </p>
 
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
@@ -118,7 +118,7 @@
         <ul class="space-y-2 text-neutral-300">
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Latência real-time vs intervalo de polling</span></li>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Sem race conditions em estado compartilhado</span></li>
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Mensagem carrega contexto — não precisa re-ler memória</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Mensagem carrega contexto — nêo precisa re-ler memória</span></li>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Mais barato em tokens (sem polling reads desnecessários)</span></li>
         </ul>
       </div>
@@ -156,11 +156,11 @@
       </p>
 
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🏷️</span>Convenção de nomes</h3>
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🏷️</span>Convençêo de nomes</h3>
         <ul class="space-y-2 text-neutral-300">
           <li><strong class="text-blue-400">Papel-curto</strong>: architect, coder, tester, reviewer, security</li>
           <li><strong class="text-blue-400">Pluralizar quando houver múltiplos</strong>: coder-1, coder-2 (raro, mas válido)</li>
-          <li><strong class="text-blue-400">Evite nomes genéricos</strong>: agent1, helper, worker — não dizem nada</li>
+          <li><strong class="text-blue-400">Evite nomes genéricos</strong>: agent1, helper, worker — nêo dizem nada</li>
           <li><strong class="text-blue-400">Use kebab-case</strong>: security-auditor, perf-engineer</li>
         </ul>
       </div>
@@ -188,7 +188,7 @@
         <h2 class="text-2xl font-bold">🔁 Pipeline pattern (A→B→C)</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        O padrão mais comum: <strong class="text-blue-400">cada agente sabe quem mensagear depois</strong>. Você instrui no prompt: "quando terminar, SendMessage para X". Resultado: encadeamento natural, sem o lead servindo de roteador.
+        O padrêo mais comum: <strong class="text-blue-400">cada agente sabe quem mensagear depois</strong>. Você instrui no prompt: "quando terminar, SendMessage para X". Resultado: encadeamento natural, sem o lead servindo de roteador.
       </p>
 
       <div class="space-y-6 mb-6">
@@ -248,7 +248,7 @@ lead ────┼→ researcher-2 ──→├──→ lead synthesizes
           <ul class="space-y-3 text-neutral-300">
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Research em múltiplas fontes</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Audit em vários módulos</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Geração paralela (testes, docs)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Geraçêo paralela (testes, docs)</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Comparar abordagens (A vs B vs C)</span></li>
           </ul>
         </div>
@@ -257,7 +257,7 @@ lead ────┼→ researcher-2 ──→├──→ lead synthesizes
           <ul class="space-y-3 text-neutral-300">
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tarefa tem dependências em série</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Workers compartilham mesmo arquivo</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Apenas 2 itens (overhead não compensa)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Apenas 2 itens (overhead nêo compensa)</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Síntese final é inviável (resultados muito divergentes)</span></li>
           </ul>
         </div>
@@ -271,7 +271,7 @@ lead ────┼→ researcher-2 ──→├──→ lead synthesizes
         <h2 class="text-2xl font-bold">👨‍💼 Supervisor / Worker</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Padrão central: <strong class="text-blue-400">lead atribui tarefas via SendMessage, workers reportam de volta</strong>. Diferente do pipeline, aqui o lead é roteador ativo — útil quando a próxima tarefa depende do resultado da anterior.
+        Padrêo central: <strong class="text-blue-400">lead atribui tarefas via SendMessage, workers reportam de volta</strong>. Diferente do pipeline, aqui o lead é roteador ativo — útil quando a próxima tarefa depende do resultado da anterior.
       </p>
 
       <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
@@ -285,7 +285,7 @@ lead ←──SendMessage──→ worker-3</code></pre>
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📋</span>Padrões de mensagem do lead</h3>
         <ul class="space-y-2 text-neutral-300">
-          <li><strong class="text-blue-400">Atribuição inicial</strong>: "Implemente OAuth2 flow..."</li>
+          <li><strong class="text-blue-400">Atribuiçêo inicial</strong>: "Implemente OAuth2 flow..."</li>
           <li><strong class="text-blue-400">Redirecionar prioridade</strong>: "Pause X, foque em Y primeiro"</li>
           <li><strong class="text-blue-400">Repassar contexto</strong>: "O architect decidiu A. Use isso..."</li>
           <li><strong class="text-blue-400">Pedido de status</strong>: "Como está o progresso?"</li>
@@ -317,7 +317,7 @@ lead ←──SendMessage──→ worker-3</code></pre>
       </div>
 
       <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atenção</h3>
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atençêo</h3>
         <p class="text-neutral-300">Nunca chame TeamDelete sem antes drenar agentes. Trabalho perdido + estado sujo na memória + telemetria incompleta. Esses 50ms de espera economizam horas depois.</p>
       </div>
 
@@ -325,7 +325,7 @@ lead ←──SendMessage──→ worker-3</code></pre>
         <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📋</span>Checklist de shutdown</h3>
         <ul class="space-y-2 text-neutral-300">
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Enviar shutdown_request a TODOS agentes</span></li>
-          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Aguardar confirmação ou timeout (10-30s)</span></li>
+          <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Aguardar confirmaçêo ou timeout (10-30s)</span></li>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Verificar se memória foi consolidada</span></li>
           <li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span>Aí sim chamar TeamDelete</span></li>
         </ul>
@@ -337,7 +337,7 @@ lead ←──SendMessage──→ worker-3</code></pre>
       <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
         <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
         <div class="space-y-4 mb-8">
-          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Comms-first</strong><span class="text-neutral-400"> — SendMessage > polling para coordenação real-time</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Comms-first</strong><span class="text-neutral-400"> — SendMessage > polling para coordenaçêo real-time</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Named agents</strong><span class="text-neutral-400"> — Cada agente tem name para ser endereçável</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Pipeline</strong><span class="text-neutral-400"> — A→B→C com cada agente sabendo quem é o próximo</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Fan-out/Fan-in</strong><span class="text-neutral-400"> — Paralelos com run_in_background, lead sintetiza</span></div></div>
@@ -346,7 +346,7 @@ lead ←──SendMessage──→ worker-3</code></pre>
         </div>
         <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
           <h3 class="font-semibold text-blue-400 mb-2">Próximo Módulo:</h3>
-          <p class="text-neutral-300">2.2 - Templates de Colaboração: 4 templates pré-built para feature, security, refactor e bugfix</p>
+          <p class="text-neutral-300">2.2 - Templates de Colaboraçêo: 4 templates pré-built para feature, security, refactor e bugfix</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
           <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>

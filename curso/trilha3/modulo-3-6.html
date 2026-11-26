@@ -122,15 +122,15 @@
         <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🔄</span>Os 4 verbos do guidance</h3>
         <ul class="space-y-2 text-neutral-300">
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>compile</strong> — pega YAML/DSL e produz regras executáveis</span></li>
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>retrieve</strong> — busca policies aplicáveis ao contexto da operação</span></li>
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>enforce</strong> — bloqueia, permite ou pede aprovação humana</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>retrieve</strong> — busca policies aplicáveis ao contexto da operaçêo</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>enforce</strong> — bloqueia, permite ou pede aprovaçêo humana</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>evolve</strong> — propõe atualizações de policy baseadas em padrões observados</span></li>
         </ul>
       </div>
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Por que control plane?</h3>
-        <p class="text-neutral-300">Sem control plane, você espalha checks pelo código. Com guidance, policies ficam <strong>declarativas</strong> e <strong>centralizadas</strong>. Auditoria fica trivial — você prova compliance mostrando o policy file, não rastreando 500 if-statements.</p>
+        <p class="text-neutral-300">Sem control plane, você espalha checks pelo código. Com guidance, policies ficam <strong>declarativas</strong> e <strong>centralizadas</strong>. Auditoria fica trivial — você prova compliance mostrando o policy file, nêo rastreando 500 if-statements.</p>
       </div>
     </section>
 
@@ -141,7 +141,7 @@
         <h2 class="text-2xl font-bold">📜 Compile policies</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Policies em Ruflo são escritas em <strong class="text-purple-400">YAML ou DSL</strong> e compiladas para regras executáveis. O compilador faz validação estática — detecta typos, dependências quebradas e contradições antes de produção. Política não compila = não vai pro runtime.
+        Policies em Ruflo sêo escritas em <strong class="text-purple-400">YAML ou DSL</strong> e compiladas para regras executáveis. O compilador faz validaçêo estática — detecta typos, dependências quebradas e contradições antes de produçêo. Política nêo compila = nêo vai pro runtime.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -157,15 +157,15 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
       </div>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⚡</span>Comando de compilação</h3>
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">⚡</span>Comando de compilaçêo</h3>
         <pre class="bg-dark-900 rounded-lg p-3 text-purple-400 text-sm overflow-x-auto"><code>npx claude-flow@v3alpha guidance compile \
   --input ./policies/*.yaml \
   --output ./dist/policies.wasm</code></pre>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Validação estática</h3>
-        <p class="text-neutral-300">O compilador detecta: typos em campos, referências a aprovadores inexistentes, regras conflitantes (uma permite, outra nega o mesmo), policies que nunca podem ser satisfeitas. Você descobre na build, não em produção.</p>
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Validaçêo estática</h3>
+        <p class="text-neutral-300">O compilador detecta: typos em campos, referências a aprovadores inexistentes, regras conflitantes (uma permite, outra nega o mesmo), policies que nunca podem ser satisfeitas. Você descobre na build, nêo em produçêo.</p>
       </div>
     </section>
 
@@ -176,26 +176,26 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
         <h2 class="text-2xl font-bold">🚦 Enforce gates</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Gates de enforcement são <strong class="text-purple-400">pontos de checagem</strong> em operações sensíveis. Pre-hooks param a operação se policy nega; post-hooks verificam pós-execução e podem disparar rollback. O agente que tenta deletar dados em produção bate no gate antes de qualquer query SQL ser executada.
+        Gates de enforcement sêo <strong class="text-purple-400">pontos de checagem</strong> em operações sensíveis. Pre-hooks param a operaçêo se policy nega; post-hooks verificam pós-execuçêo e podem disparar rollback. O agente que tenta deletar dados em produçêo bate no gate antes de qualquer query SQL ser executada.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
           <h4 class="font-bold text-emerald-400 mb-4">✓ Pre-hooks bloqueiam</h4>
           <ul class="space-y-3 text-neutral-300">
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Deploy em produção sem aprovação</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Deploy em produçêo sem aprovaçêo</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Delete de dados sensíveis</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Mudança de schema sem migration plan</span></li>
             <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Outbound network call para domínio bloqueado</span></li>
-            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Spawn de agente sem permissão claims</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Spawn de agente sem permissêo claims</span></li>
           </ul>
         </div>
         <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
           <h4 class="font-bold text-red-400 mb-4">✗ Sem gates você arrisca</h4>
           <ul class="space-y-3 text-neutral-300">
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente derrubando produção por engano</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Agente derrubando produçêo por engano</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Vazamento de dados via API misconfigurada</span></li>
-            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Compliance violation em horário não-business</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Compliance violation em horário nêo-business</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Spawn descontrolado de subagentes</span></li>
             <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Spending acima do budget</span></li>
           </ul>
@@ -210,14 +210,14 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
         <h2 class="text-2xl font-bold">🔬 WASM kernel (Rust-powered)</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        O kernel de enforcement do guidance é escrito em <strong class="text-purple-400">Rust e compilado para WASM</strong>. Duas vantagens: performance (avaliação de policy em microssegundos) e sandboxing (policy maliciosa não pode comprometer o host). Mesmo que alguém injete código numa policy, ele roda confinado no WASM.
+        O kernel de enforcement do guidance é escrito em <strong class="text-purple-400">Rust e compilado para WASM</strong>. Duas vantagens: performance (avaliaçêo de policy em microssegundos) e sandboxing (policy maliciosa nêo pode comprometer o host). Mesmo que alguém injete código numa policy, ele roda confinado no WASM.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🚀</span>Vantagens do WASM</h3>
         <ul class="space-y-2 text-neutral-300">
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Performance</strong> — avaliação de policy em &lt;1ms típico</span></li>
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Sandbox</strong> — não acessa filesystem nem network sem permissão explícita</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Performance</strong> — avaliaçêo de policy em &lt;1ms típico</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Sandbox</strong> — nêo acessa filesystem nem network sem permissêo explícita</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Cross-platform</strong> — mesmo binary roda em Linux, macOS, Windows</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Determinístico</strong> — mesmo input produz mesmo output sempre</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Type-safe</strong> — Rust impede categorias inteiras de bugs</span></li>
@@ -226,7 +226,7 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span>Comparativo</h3>
-        <p class="text-neutral-300">Policy engine em <strong>JavaScript puro</strong>: ~50ms por avaliação, sem sandboxing real. Policy engine em <strong>WASM/Rust</strong>: ~0.5ms por avaliação, sandbox forte. Em hot paths com milhares de chamadas, a diferença é gigante.</p>
+        <p class="text-neutral-300">Policy engine em <strong>JavaScript puro</strong>: ~50ms por avaliaçêo, sem sandboxing real. Policy engine em <strong>WASM/Rust</strong>: ~0.5ms por avaliaçêo, sandbox forte. Em hot paths com milhares de chamadas, a diferença é gigante.</p>
       </div>
     </section>
 
@@ -237,7 +237,7 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
         <h2 class="text-2xl font-bold">🎯 Trust anchors</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Trust anchors são <strong class="text-purple-400">pontos de referência confiáveis</strong> que ajudam o guidance a tomar decisões sob informação parcial ou ambígua. Se você só tem 60% de certeza sobre o que uma operação faz, o anchor define o comportamento default — preferir bloquear ou permitir, com qual peso temporal.
+        Trust anchors sêo <strong class="text-purple-400">pontos de referência confiáveis</strong> que ajudam o guidance a tomar decisões sob informaçêo parcial ou ambígua. Se você só tem 60% de certeza sobre o que uma operaçêo faz, o anchor define o comportamento default — preferir bloquear ou permitir, com qual peso temporal.
       </p>
 
       <div class="space-y-6 mb-6">
@@ -245,8 +245,8 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
           <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">🤔</span></div>
           <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
             <h4 class="font-semibold mb-2">Uncertainty handling</h4>
-            <p class="text-sm text-neutral-400 mb-3">Decisão sob dúvida</p>
-            <p class="text-neutral-300 text-sm">Quando confiança é baixa, o anchor decide: <strong>conservador</strong> (negar e pedir clarificação humana) ou <strong>permissivo</strong> (permitir com audit alto). Healthcare = conservador. Dev sandbox = permissivo.</p>
+            <p class="text-sm text-neutral-400 mb-3">Decisêo sob dúvida</p>
+            <p class="text-neutral-300 text-sm">Quando confiança é baixa, o anchor decide: <strong>conservador</strong> (negar e pedir clarificaçêo humana) ou <strong>permissivo</strong> (permitir com audit alto). Healthcare = conservador. Dev sandbox = permissivo.</p>
           </div>
         </div>
         <div class="flex items-start space-x-4">
@@ -262,7 +262,7 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
           <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
             <h4 class="font-semibold mb-2">Default bias</h4>
             <p class="text-sm text-neutral-400 mb-3">Quando policies conflitam</p>
-            <p class="text-neutral-300 text-sm">Se duas policies aplicáveis dão veredictos opostos, o trust anchor resolve. Geralmente: <strong>policy mais restritiva ganha</strong> (fail-safe). Configurável por contexto.</p>
+            <p class="text-neutral-300 text-sm">Se duas policies aplicáveis dêo veredictos opostos, o trust anchor resolve. Geralmente: <strong>policy mais restritiva ganha</strong> (fail-safe). Configurável por contexto.</p>
           </div>
         </div>
       </div>
@@ -275,11 +275,11 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
         <h2 class="text-2xl font-bold">✅ Conformance kit</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        O <strong class="text-purple-400">Conformance Kit</strong> roda baterias de testes contra suas policies para validar HIPAA, SOC2 ou GDPR. Não é só checklist — é simulação ativa: gera operações sintéticas de violação e confirma que o guidance bloqueia. Se passa, você tem evidência objetiva para auditoria.
+        O <strong class="text-purple-400">Conformance Kit</strong> roda baterias de testes contra suas policies para validar HIPAA, SOC2 ou GDPR. Nêo é só checklist — é simulaçêo ativa: gera operações sintéticas de violaçêo e confirma que o guidance bloqueia. Se passa, você tem evidência objetiva para auditoria.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🧪</span>Comandos de validação</h3>
+        <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🧪</span>Comandos de validaçêo</h3>
         <div class="space-y-4">
           <div>
             <p class="text-sm text-neutral-400 mb-1">Validar HIPAA:</p>
@@ -305,7 +305,7 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Auditoria de verdade</h3>
-        <p class="text-neutral-300">Auditor não pede só documento — pede prova. O conformance kit gera <strong>relatório com casos de teste, inputs, outputs e veredictos</strong>. É evidência objetiva, não promessa.</p>
+        <p class="text-neutral-300">Auditor nêo pede só documento — pede prova. O conformance kit gera <strong>relatório com casos de teste, inputs, outputs e veredictos</strong>. É evidência objetiva, nêo promessa.</p>
       </div>
     </section>
 
@@ -315,9 +315,9 @@ deny_message: "Delete em prod requer 2 aprovações"</code></pre>
         <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📋</span>Resumo do Módulo</h2>
         <div class="space-y-4 mb-8">
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Control plane</strong><span class="text-neutral-400"> — 4 verbos: compile, retrieve, enforce, evolve</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Compile</strong><span class="text-neutral-400"> — YAML/DSL → executável WASM, validação estática</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Compile</strong><span class="text-neutral-400"> — YAML/DSL → executável WASM, validaçêo estática</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Enforce gates</strong><span class="text-neutral-400"> — Pre/post hooks bloqueiam operações sensíveis</span></div></div>
-          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">WASM kernel</strong><span class="text-neutral-400"> — Rust + sandboxing, &lt;1ms por avaliação</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">WASM kernel</strong><span class="text-neutral-400"> — Rust + sandboxing, &lt;1ms por avaliaçêo</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Trust anchors</strong><span class="text-neutral-400"> — Uncertainty handling + temporal reasoning</span></div></div>
           <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Conformance kit</strong><span class="text-neutral-400"> — HIPAA / SOC2 / GDPR validation automatizada</span></div></div>
         </div>

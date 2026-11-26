@@ -115,7 +115,7 @@
         <h2 class="text-2xl font-bold">🤝 Why federate</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Federation existe quando um único host não é suficiente. <strong class="text-purple-400">Agentes em hosts ou clouds diferentes precisam trabalhar juntos</strong> sem expor dados sensíveis e sem confiar cegamente uns nos outros. Esse é o problema que zero-trust resolve: trate cada peer como hostil até prova em contrário.
+        Federation existe quando um único host nêo é suficiente. <strong class="text-purple-400">Agentes em hosts ou clouds diferentes precisam trabalhar juntos</strong> sem expor dados sensíveis e sem confiar cegamente uns nos outros. Esse é o problema que zero-trust resolve: trate cada peer como hostil até prova em contrário.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -130,7 +130,7 @@
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span>Princípio zero-trust</h3>
-        <p class="text-neutral-300">Não confie. Verifique sempre. <strong>Cada mensagem</strong> entre peers é autenticada, criptografada e auditada. Network perimeter não é mais a fronteira de segurança — identidade criptográfica é.</p>
+        <p class="text-neutral-300">Nêo confie. Verifique sempre. <strong>Cada mensagem</strong> entre peers é autenticada, criptografada e auditada. Network perimeter nêo é mais a fronteira de segurança — identidade criptográfica é.</p>
       </div>
     </section>
 
@@ -141,23 +141,23 @@
         <h2 class="text-2xl font-bold">🔐 mTLS + ed25519</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Cada agente Ruflo na federation tem um <strong class="text-purple-400">par de chaves ed25519</strong>. mTLS (mutual TLS) força ambos os lados a provarem identidade antes de qualquer mensagem trafegar. Sem keypair válido, sem comunicação. Sem certificado emitido pela CA da federation, sem comunicação.
+        Cada agente Ruflo na federation tem um <strong class="text-purple-400">par de chaves ed25519</strong>. mTLS (mutual TLS) força ambos os lados a provarem identidade antes de qualquer mensagem trafegar. Sem keypair válido, sem comunicaçêo. Sem certificado emitido pela CA da federation, sem comunicaçêo.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🔑</span>Handshake mTLS simplificado</h3>
         <ol class="space-y-3 text-neutral-300 list-decimal list-inside">
           <li><strong class="text-purple-400">Peer A apresenta certificado</strong> assinado pela CA federada</li>
-          <li><strong class="text-purple-400">Peer B verifica</strong> assinatura, validade e revogação</li>
+          <li><strong class="text-purple-400">Peer B verifica</strong> assinatura, validade e revogaçêo</li>
           <li><strong class="text-purple-400">Peer B apresenta seu certificado</strong> de volta</li>
           <li><strong class="text-purple-400">Peer A verifica também</strong> — handshake é mútuo</li>
-          <li><strong class="text-purple-400">Sessão criptografada</strong> usando chaves ed25519 derivadas</li>
+          <li><strong class="text-purple-400">Sessêo criptografada</strong> usando chaves ed25519 derivadas</li>
         </ol>
       </div>
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Por que ed25519</h3>
-        <p class="text-neutral-300">ed25519 é rápido (chaves pequenas, assinaturas rápidas), seguro (resistente a ataques timing) e moderno. RSA fica obsoleto contra computadores quânticos no futuro próximo — ed25519 dá margem para migração para post-quantum.</p>
+        <p class="text-neutral-300">ed25519 é rápido (chaves pequenas, assinaturas rápidas), seguro (resistente a ataques timing) e moderno. RSA fica obsoleto contra computadores quânticos no futuro próximo — ed25519 dá margem para migraçêo para post-quantum.</p>
       </div>
     </section>
 
@@ -168,7 +168,7 @@
         <h2 class="text-2xl font-bold">🛡️ PII stripping (14 tipos detectados)</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Antes de qualquer mensagem cruzar o fio, o <strong class="text-purple-400">PII Scrubber detecta e remove dados sensíveis</strong>. São 14 categorias cobertas — de SSN a endereço IP, passando por cartões de crédito e dados de saúde. Você nunca passa dado pessoal sem consentimento explícito por engano.
+        Antes de qualquer mensagem cruzar o fio, o <strong class="text-purple-400">PII Scrubber detecta e remove dados sensíveis</strong>. Sêo 14 categorias cobertas — de SSN a endereço IP, passando por cartões de crédito e dados de saúde. Você nunca passa dado pessoal sem consentimento explícito por engano.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -199,8 +199,8 @@
       </div>
 
       <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atenção</h3>
-        <p class="text-neutral-300">PII stripping <strong>não é silver bullet</strong>. Sempre revise as policies de scrubbing para o seu domínio. Em healthcare e finance, configure regex customizados além dos 14 padrões nativos.</p>
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span>Atençêo</h3>
+        <p class="text-neutral-300">PII stripping <strong>nêo é silver bullet</strong>. Sempre revise as policies de scrubbing para o seu domínio. Em healthcare e finance, configure regex customizados além dos 14 padrões nativos.</p>
       </div>
     </section>
 
@@ -211,7 +211,7 @@
         <h2 class="text-2xl font-bold">📊 Trust scoring</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Cada peer da federation tem um <strong class="text-purple-400">score de confiança dinâmico</strong>. Não é binary trust/no-trust — é um número que sobe e desce conforme o comportamento observado. Peers com score alto ganham mais autonomia; scores baixos ficam restritos a operações read-only ou são banidos.
+        Cada peer da federation tem um <strong class="text-purple-400">score de confiança dinâmico</strong>. Nêo é binary trust/no-trust — é um número que sobe e desce conforme o comportamento observado. Peers com score alto ganham mais autonomia; scores baixos ficam restritos a operações read-only ou sêo banidos.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -224,13 +224,13 @@
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>success_rate (40%)</strong> — % de tarefas concluídas com sucesso</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>uptime (20%)</strong> — peer disponível quando necessário</span></li>
           <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>threat (20%)</strong> — quantidade de eventos suspeitos detectados</span></li>
-          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>integrity (20%)</strong> — assinaturas válidas, dados não corrompidos</span></li>
+          <li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>integrity (20%)</strong> — assinaturas válidas, dados nêo corrompidos</span></li>
         </ul>
       </div>
 
       <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
         <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🎯</span>Trust tiers</h3>
-        <p class="text-neutral-300">Tiers são ajustados em tempo real: <strong>0.9-1.0</strong> = full trust (autonomia ampla), <strong>0.6-0.9</strong> = standard (operações comuns liberadas), <strong>0.3-0.6</strong> = restricted (read-only + audit), <strong>&lt;0.3</strong> = quarantine (banido até reavaliação manual).</p>
+        <p class="text-neutral-300">Tiers sêo ajustados em tempo real: <strong>0.9-1.0</strong> = full trust (autonomia ampla), <strong>0.6-0.9</strong> = standard (operações comuns liberadas), <strong>0.3-0.6</strong> = restricted (read-only + audit), <strong>&lt;0.3</strong> = quarantine (banido até reavaliaçêo manual).</p>
       </div>
     </section>
 
@@ -265,7 +265,7 @@
           <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">🇪🇺</span></div>
           <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
             <h4 class="font-semibold mb-2">GDPR mode</h4>
-            <p class="text-sm text-neutral-400 mb-3">União Europeia</p>
+            <p class="text-sm text-neutral-400 mb-3">Uniêo Europeia</p>
             <p class="text-neutral-300 text-sm">Right to erasure (delete cascading), data minimization (só coleta o necessário), consent tracking, data residency (EU peers only), DPO notifications.</p>
           </div>
         </div>
@@ -279,7 +279,7 @@
         <h2 class="text-2xl font-bold">📜 Audit trail HNSW</h2>
       </div>
       <p class="text-neutral-300 mb-6 leading-relaxed">
-        Toda federation event — handshake, mensagem, change de trust score, scrubbing aplicado — é <strong class="text-purple-400">indexada no HNSW</strong>. Você não tem só log linear, tem busca semântica nos eventos. Pergunte "que peers tentaram acessar dados de saúde no último mês?" e o sistema responde.
+        Toda federation event — handshake, mensagem, change de trust score, scrubbing aplicado — é <strong class="text-purple-400">indexada no HNSW</strong>. Você nêo tem só log linear, tem busca semântica nos eventos. Pergunte "que peers tentaram acessar dados de saúde no último mês?" e o sistema responde.
       </p>
 
       <div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
@@ -308,7 +308,7 @@
 
       <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
         <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span>Compliance auditoria</h3>
-        <p class="text-neutral-300">Auditor pede "comprove que dados de saúde nunca saíram da região EU"? Você roda uma busca semântica e exporta o resultado como evidência. Audit-friendly por design.</p>
+        <p class="text-neutral-300">Auditor pede "comprove que dados de saúde nunca saíram da regiêo EU"? Você roda uma busca semântica e exporta o resultado como evidência. Audit-friendly por design.</p>
       </div>
     </section>
 
